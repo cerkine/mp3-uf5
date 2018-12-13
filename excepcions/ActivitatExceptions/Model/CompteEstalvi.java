@@ -1,6 +1,7 @@
 package excepcions.ActivitatExceptions.Model;
 
 import excepcions.ActivitatExceptions.Exceptions.BankAccountException;
+import excepcions.ActivitatExceptions.Exceptions.ExceptionMessage;
 
 import java.util.List;
 
@@ -31,8 +32,12 @@ public class CompteEstalvi {
      @return quantitat d'usuaris que té el compte
      @throws BankAccountException
      **/
-    public int removeUser(String dni) {
-        llista_usuaris.removeIf(u -> dni.equals(u.getDNI()));
+    public int removeUser(String dni) throws BankAccountException {
+        if (llista_usuaris.size()==1){
+            throw new BankAccountException(ExceptionMessage.ACCOUNT_ZERO_USER);
+        }else{
+            llista_usuaris.removeIf(u -> dni.equals(u.getDNI()));
+        }
         return llista_usuaris.size();
     }
 
@@ -49,8 +54,12 @@ public class CompteEstalvi {
      * @param m
      * @throws BankAccountException
      */
-    public void treure(double m) {
-        saldo -= m;
+    public void treure(double m) throws BankAccountException {
+        if(saldo>=m){
+            saldo-=m;
+        }else {
+            throw new BankAccountException(ExceptionMessage.ACCOUNT_OVERDRAFT);
+        }
     }
 
     public String getNumCompte() {
