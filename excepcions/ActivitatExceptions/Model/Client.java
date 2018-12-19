@@ -43,8 +43,5 @@ public class Client {
         this.DNI = DNI;
     }
 
-    public void transferencia(CompteEstalvi font, CompteEstalvi desti, double suma) {
-        //TODO implementar transferència
-    }
 
 }

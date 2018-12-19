@@ -3,6 +3,7 @@ package excepcions.ActivitatExceptions.Model;
 import excepcions.ActivitatExceptions.Exceptions.BankAccountException;
 import excepcions.ActivitatExceptions.Exceptions.ExceptionMessage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CompteEstalvi {
@@ -11,6 +12,7 @@ public class CompteEstalvi {
     private List<Client> llista_usuaris;
 
     public CompteEstalvi(String numCompte) {
+        llista_usuaris = new ArrayList<>();
         this.numCompte = numCompte;
         saldo = 0;
     }
@@ -73,4 +75,10 @@ public class CompteEstalvi {
     public List<Client> getLlista_usuaris() {
         return llista_usuaris;
     }
+
+    public void transferencia( CompteEstalvi desti, double suma) {
+
+        desti.ingressar(suma);
+    }
+
 }
